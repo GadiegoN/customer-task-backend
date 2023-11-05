@@ -1,16 +1,19 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "./src/server.ts",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "./src/routes.ts",
-            "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"]
-        }
+    "functions": {
+      "api": {
+        "handler": "./src/server.ts",
+        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+      }
+    },
+    "rewrites": [
+      {
+        "source": "/api/(.*)",
+        "destination": "/.vercel/functions/api"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/"
+      }
     ]
-}
+  }
