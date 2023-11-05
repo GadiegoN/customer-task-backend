@@ -1,19 +1,19 @@
 {
-    "version": 2,
-    "functions": {
-      "api": {
-        "handler": "./src/server.ts",
-        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"]
-      }
+  "version": 2,
+  "functions": {
+    "api": {
+      "source": "./src/server.ts",
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "function": "api"
     },
-    "rewrites": [
-      {
-        "source": "/api/(.*)",
-        "destination": "/.vercel/functions/api"
-      },
-      {
-        "source": "/(.*)",
-        "destination": "/"
-      }
-    ]
-  }
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
